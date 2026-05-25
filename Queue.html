@@ -1,0 +1,272 @@
+﻿﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>Queue</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+    
+    <header>
+        <nav class="navbar">
+
+            <div class="logo">
+                <i class="fa-solid fa-code"></i>
+                AlgoWeb
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="stack.html">Stack</a></li>
+                <li><a href="Queue.html">Queue</a></li>
+                <li><a href="InfixPrefix&Prefix.html">Infix, Prefix, & Posfix</a></li>
+                <li><a href="Sorting.html">sorting</a></li>
+                <li><a href="Rekursi.html">rekrusif</a></li>
+                <li><a href="Searching.html">Search</a></li>
+                <li><a href="Hashing.html">Hashing</a></li>
+                <li><a href="LinkedList.html">Linked List</a></li>
+                <li><a href="Tree.html">Tree</a></li>
+            </ul>
+
+        </nav>
+    </header>
+    <main>
+        <div id="gthd8v-1" class="materi-box">
+            <h2>Queue</h2>
+            <p>Queue adalah struktur data yang menggunakan prinsip <strong>FIFO</strong> (First In First Out): data yang masuk pertama akan keluar pertama.</p>
+        </div>
+
+        <div id="gthd8v-2" class="materi-box">
+            <h3>Struktur Queue</h3>
+            <ul>
+                <li><strong>Front</strong> → penunjuk elemen paling depan (yang akan keluar)</li>
+                <li><strong>Rear</strong> → penunjuk elemen paling belakang (tempat masuk data)</li>
+                <li><strong>Array/List</strong> → tempat menyimpan data</li>
+            </ul>
+        </div>
+
+        <div id="gthd8v-3" class="materi-box">
+            <h3>Operasi Dasar Queue</h3>
+            <div class="materi-box">
+                <h4>Enqueue</h4>
+                <ul>
+                    <li>Menambahkan data ke rear</li>
+                </ul>
+                <p><strong>Contoh:</strong></p>
+                <ul>
+                    <li>Queue kosong → []</li>
+                    <li>Enqueue A → [A]</li>
+                    <li>Enqueue B → [A, B]</li>
+                </ul>
+            </div>
+
+            <div class="materi-box">
+                <h4>Dequeue</h4>
+                <ul>
+                    <li>Menghapus data dari front</li>
+                </ul>
+                <p><strong>Contoh:</strong></p>
+                <ul>
+                    <li>[A, B, C] → Dequeue → [B, C]</li>
+                </ul>
+            </div>
+
+            <div class="materi-box">
+                <h4>Peek / Front</h4>
+                <ul>
+                    <li>Melihat data paling depan tanpa menghapus</li>
+                </ul>
+                <p><strong>Contoh:</strong> [A, B, C] → Peek = A</p>
+            </div>
+
+            <div class="materi-box">
+                <h4>IsEmpty</h4>
+                <ul>
+                    <li>Cek apakah queue kosong</li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="gthd8v-4" class="materi-box">
+            <h3>Algoritma Queue (Enqueue &amp; Dequeue)</h3>
+            <div class="materi-box">
+                <h4>Enqueue (Masuk ke Rear)</h4>
+                <ul>
+                    <li>Cek apakah queue penuh</li>
+                    <li>Jika tidak penuh, tambahkan data ke <strong>rear</strong></li>
+                    <li>Pembaruan posisi <strong>rear</strong></li>
+                </ul>
+            </div>
+
+            <div class="materi-box">
+                <h4>Dequeue (Keluar dari Front)</h4>
+                <ul>
+                    <li>Cek apakah queue kosong</li>
+                    <li>Jika tidak kosong, ambil data dari <strong>front</strong></li>
+                    <li>Pembaruan posisi <strong>front</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="gthd8v-4b" class="materi-box">
+            <h3>Contoh Enqueue &amp; Dequeue (Queue)</h3>
+            <p>Gunakan operasi queue untuk memodelkan proses masuk (enqueue) dan keluar (dequeue).</p>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <div class="code-header">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+            </div>
+            <pre><code>from collections import deque
+
+
+def hot_potato(daftar_nama, k):
+
+
+    q_permainan = deque()
+
+    # memasukkan pemain ke queue
+    for nama in daftar_nama:
+        q_permainan.append(nama)
+
+    # permainan berlangsung sampai tersisa 1 pemain
+    while len(q_permainan) > 1:
+
+        # memindahkan pemain dari depan ke belakang
+        for i in range(k - 1):
+            pindah = q_permainan.popleft()
+            q_permainan.append(pindah)
+
+        # pemain tereliminasi
+        tereliminasi = q_permainan.popleft()
+        print(f"Pemain nomor {tereliminasi} keluar dari lingkaran.")
+
+    # pemenang
+    return q_permainan.popleft()
+
+
+n = 5
+k = 2
+
+pemain = list(range(1, n + 1))
+
+# pakai k, bukan n
+pemenang = hot_potato(pemain, k)
+
+print("------------------------------")
+print("Pemenang adalah pemain nomor:", pemenang)
+
+# Output:
+# Pemain nomor 2 keluar dari lingkaran.
+# Pemain nomor 4 keluar dari lingkaran.
+# Pemain nomor 1 keluar dari lingkaran.
+# Pemain nomor 5 keluar dari lingkaran.
+# Pemenang adalah pemain nomor: 3</code></pre>
+        </div>
+
+
+        <div id="gthd8v-5" class="materi-box">
+            <h3>Jenis-Jenis Queue</h3>
+            <ol>
+                <li>
+                    <strong>Linear Queue</strong>
+                    <ul>
+                        <li>Antrian biasa</li>
+                        <li>Tidak bisa reuse space kosong</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Circular Queue</strong>
+                    <ul>
+                        <li>Bentuk melingkar</li>
+                        <li>Bisa menggunakan kembali ruang kosong</li>
+                    </ul>
+                </li>
+                <li>
+                    <strong>Priority Queue</strong>
+                    <ul>
+                        <li>Setiap data punya prioritas</li>
+                        <li>Yang prioritas tinggi keluar dulu</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <div id="gthd8v-6" class="materi-box">
+            <h3>Soal Latihan: Hot Potato</h3>
+            <ul>
+                <li>Sekelompok anak duduk melingkar, tiap peserta bernomor 1 sampai n.</li>
+                <li>Pemain nomor awal memegang kentang panas, lalu mengoper ke pemain berikutnya searah jarum jam.</li>
+                <li>Pada hitungan ke-k, pemain yang memegang kentang keluar.</li>
+                <li>Ulangi sampai tersisa 1 pemain (pemenang).</li>
+            </ul>
+            <p><strong>Output:</strong> nomor pemain yang menang.</p>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <div class="code-header">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+            </div>
+            <pre><code>from collections import deque
+
+
+def hot_potato(daftar_nama, k):
+
+
+    q_permainan = queue()
+
+    for nama in daftar_nama:
+
+        enqueue(q_permainan, nama)
+
+    while len(q_permainan) > 1:
+
+        for i in range(k - 1):
+
+            pindah = dequeue(q_permainan)
+
+            enqueue(q_permainan, pindah)
+
+        tereliminasi = dequeue(q_permainan)
+
+        print(f"Pemain nomor {tereliminasi} keluar dari lingkaran.")
+
+    return dequeue(q_permainan)
+
+n = 5
+
+k = 2
+
+pemain = list(range(1, n + 1))
+
+pemenang = hot_potato(pemain, n)
+
+print("------------------------------")
+
+print("Pemenang adalah pemain nomor:", pemenang)</code></pre>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
+

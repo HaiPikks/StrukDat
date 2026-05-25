@@ -1,0 +1,701 @@
+﻿﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>Linked List</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    >
+
+</head>
+
+<body>
+    
+    <header>
+        <nav class="navbar">
+
+            <div class="logo">
+                <i class="fa-solid fa-code"></i>
+                AlgoWeb
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="stack.html">Stack</a></li>
+                <li><a href="Queue.html">Queue</a></li>
+                <li><a href="InfixPrefix&Prefix.html">Infix, Prefix, & Posfix</a></li>
+                <li><a href="Sorting.html">sorting</a></li>
+                <li><a href="Rekursi.html">rekrusif</a></li>
+                <li><a href="Searching.html">Search</a></li>
+                <li><a href="Hashing.html">Hashing</a></li>
+                <li><a href="LinkedList.html">Linked List</a></li>
+                <li><a href="Tree.html">Tree</a></li>
+            </ul>
+
+        </nav>
+    </header>
+    <main>
+        <div id="gthd8v-1" class="materi-box">
+            <h2>Linked List</h2>
+            <p>Sebuah linked list terdiri dari <strong>node</strong> yang berisi data, dan sebuah <strong>pointer/link</strong> ke node berikutnya.</p>
+        </div>
+
+        <div id="gthd8v-2" class="materi-box">
+            <h3>Linked List vs Array</h3>
+            <ul>
+                <li><strong>Array:</strong> ukuran memori tetap; insert/hapus butuh pergeseran.</li>
+                <li><strong>Linked list:</strong> tidak perlu geser elemen karena node tidak berada dalam blok memori berurutan.</li>
+                <li><strong>Memori:</strong> linked list butuh memori ekstra untuk pointer.</li>
+                <li><strong>Akses:</strong> array bisa akses langsung (myArray[5]); linked list perlu traversal.</li>
+            </ul>
+        </div>
+
+        <div id="gthd8v-3" class="materi-box">
+            <h3>Jenis-jenis Linked List</h3>
+            <ol>
+                <li>Linked List tunggal</li>
+                <li>Linked List ganda</li>
+                <li>Linked List melingkar</li>
+            </ol>
+            <p>Linked list melingkar cocok untuk daftar yang perlu ditelusuri berulang-ulang.</p>
+        </div>
+
+        <div id="gthd8v-4" class="materi-box">
+            <h3>Operasi Linked List</h3>
+            <ol>
+                <li>Lintasan (traversal)</li>
+                <li>Menghapus sebuah node</li>
+                <li>Sisipkan sebuah node</li>
+                <li>Menyortir</li>
+            </ol>
+        </div>
+
+        <div id="gthd8v-5" class="materi-box">
+            <h3>Penelusuran Linked List (Traversal)</h3>
+            <p>Traversing berarti menelusuri linked list dengan mengikuti tautan dari satu node ke node berikutnya.</p>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>class Node:
+
+    def __init__(self, data):
+
+        self.data = data
+
+        self.next = None
+
+
+
+def traverseAndPrint(head):
+
+    currentNode = head
+
+    while currentNode:
+
+        print(currentNode.data, end=" -> ")
+
+        currentNode = currentNode.next
+
+    print("null")
+
+
+
+node1 = Node(7)
+
+node2 = Node(11)
+
+node3 = Node(3)
+
+node4 = Node(2)
+
+node5 = Node(9)
+
+
+
+node1.next = node2
+
+node2.next = node3
+
+node3.next = node4
+
+node4.next = node5
+
+
+
+traverseAndPrint(node1)</code></pre>
+        </div>
+
+        <div id="gthd8v-6" class="materi-box">
+            <h3>Mencari Nilai Terendah</h3>
+            <p>Mencari nilai terendah mirip array, tetapi tetap perlu mengikuti pointer ke node berikutnya.</p>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>class Node:
+
+    def __init__(self, data):
+
+        self.data = data
+
+        self.next = None
+
+
+
+def findLowestValue(head):
+
+    minValue = head.data
+
+    currentNode = head.next
+
+    while currentNode:
+
+        if currentNode.data < minValue:
+
+            minValue = currentNode.data
+
+            currentNode = currentNode.next
+
+    return minValue
+
+
+
+node1 = Node(7)
+
+node2 = Node(11)
+
+node3 = Node(3)
+
+node4 = Node(2)
+
+node5 = Node(9)
+
+
+
+node1.next = node2
+
+node2.next = node3
+
+node3.next = node4
+
+node4.next = node5
+
+
+
+print("The lowest value in the linked list is:", findLowestValue(node1))</code></pre>
+        </div>
+
+        <div id="gthd8v-7" class="materi-box">
+            <h3>Menghapus Node</h3>
+            <p>Untuk menghapus node, pastikan pointer dihubungkan ulang sebelum node dihapus agar linked list tidak rusak.</p>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>class Node:
+
+    def __init__(self, data):
+
+        self.data = data
+
+        self.next = None
+
+
+
+    def traverseAndPrint(head):
+
+        currentNode = head
+
+        while currentNode:
+
+            print(currentNode.data, end=" -> ")
+
+            currentNode = currentNode.next
+
+        print("null")
+
+
+
+def deleteSpecificNode(head, nodeToDelete):
+
+    if head == nodeToDelete:
+
+        return head.next
+
+
+
+    currentNode = head
+
+    while currentNode.next and currentNode.next != nodeToDelete:
+
+        currentNode = currentNode.next
+
+
+
+    if currentNode.next is None:
+
+        return head
+
+
+
+    currentNode.next = currentNode.next.next
+
+
+
+    return head
+
+
+
+node1 = Node(7)
+
+node2 = Node(11)
+
+node3 = Node(3)
+
+node4 = Node(2)
+
+node5 = Node(9)
+
+
+
+node1.next = node2
+
+node2.next = node3
+
+node3.next = node4
+
+node4.next = node5
+
+
+
+print("Before deletion:")
+
+traverseAndPrint(node1)
+
+
+
+# Delete node4
+
+node1 = deleteSpecificNode(node1, node4)
+
+
+
+print("\nAfter deletion:")
+
+traverseAndPrint(node1)</code></pre>
+        </div>
+
+        <div id="gthd8v-8" class="materi-box">
+            <h3>Sisipkan Node ke Linked List</h3>
+            <p>Sisipkan node dengan menyesuaikan pointer next: node baru harus terhubung ke node sebelum &amp; node berikutnya.</p>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>class Node:
+
+    def __init__(self, data):
+
+        self.data = data
+
+        self.next = None
+
+
+
+def traverseAndPrint(head):
+
+    currentNode = head
+
+    while currentNode:
+
+        print(currentNode.data, end=" -> ")
+
+        currentNode = currentNode.next
+
+    print("null")
+
+
+
+def insertNodeAtPosition(head, newNode, position):
+
+    if position == 1:
+
+        newNode.next = head
+
+        return newNode
+
+
+
+    currentNode = head
+
+    for _ in range(position - 2):
+
+        if currentNode.next is None:
+
+            break
+
+        currentNode = currentNode.next
+
+
+
+    newNode.next = currentNode.next
+
+    currentNode.next = newNode
+
+    return head
+
+
+
+node1 = Node(7)
+
+node2 = Node(3)
+
+node3 = Node(2)
+
+node4 = Node(9)
+
+
+
+node1.next = node2
+
+node2.next = node3
+
+node3.next = node4
+
+
+
+print("Original list:")
+
+traverseAndPrint(node1)
+
+
+
+# Insert a new node with value 97 at position 2
+
+newNode = Node(97)
+
+node1 = insertNodeAtPosition(node1, newNode, 2)
+
+
+
+print("\nAfter insertion:")
+
+traverseAndPrint(node1)</code></pre>
+        </div>
+
+        <div id="gthd8v-9" class="materi-box">
+            <h2>Soal Latihan</h2>
+            <ol>
+                <li>Tambahkan method addLast untuk menambahkan node di posisi akhir.</li>
+                <li>Tambahkan method search untuk mencari data dan mengembalikan posisi atau None.</li>
+                <li>Simulasikan sistem antrian pasien menggunakan linked list (darurat di depan).</li>
+            </ol>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>class Node:
+
+    def __init__(self, data):
+
+        self.data = data
+
+        self.next = None
+
+
+
+class LinkedList:
+
+    def __init__(self):
+
+        self.head = None
+
+
+
+    def addFront(self, data):
+
+        newNode = Node(data)
+
+        newNode.next = self.head
+
+        self.head = newNode
+
+
+
+    def addLast(self, data):
+
+        newNode = Node(data)
+
+        if self.head is None:
+
+            self.head = newNode
+
+            return
+
+
+
+        current = self.head
+
+        while current.next is not None:
+
+            current = current.next
+
+
+
+        current.next = newNode
+
+
+
+    def search(self, data):
+
+        current = self.head
+
+        posisi = 0
+
+        while current is not None:
+
+            if current.data == data:
+
+                return posisi
+
+            current = current.next
+
+            posisi += 1
+
+
+
+        return None
+
+
+
+    def insertBefore(self, node, newNode):
+
+        if self.head.data == node:
+
+            self.addFront(newNode)
+
+            return
+
+
+
+        prev = None
+
+        current = self.head
+
+        while current is not None and current.data != node:
+
+            prev = current
+
+            current = current.next
+
+
+
+        if current is not None:
+
+            temp = Node(newNode)
+
+            prev.next = temp
+
+            temp.next = current
+
+
+
+    def insertAfter(self, node, newNode):
+
+        current = self.head
+
+        while current is not None:
+
+            if current.data == node:
+
+                temp = Node(newNode)
+
+                temp.next = current.next
+
+                current.next = temp
+
+                return
+
+
+
+            current = current.next
+
+
+
+    def __str__(self):
+
+        hasil = "[ "
+
+        current = self.head
+
+        while current is not None:
+
+            hasil += str(current.data) + " "
+
+            current = current.next
+
+
+
+        hasil += "]"
+
+        return hasil</code></pre>
+        </div>
+
+        <div id="gthd8v-10" class="materi-box">
+            <h3>Simulasi Antrian Pasien (Darurat di Depan)</h3>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>class Pasien:
+
+    def __init__(self, nama, prioritas):
+
+        self.nama = nama
+
+        self.prioritas = prioritas
+
+        self.next = None
+
+
+
+class AntrianKlinik:
+
+    def __init__(self):
+
+        self.head = None
+
+        self.nomor = 1
+
+
+
+    # daftar pasien
+
+    def daftar(self, nama, prioritas):
+
+        pasienBaru = Pasien(nama, prioritas)
+
+        if prioritas.lower() == "darurat":
+
+            pasienBaru.next = self.head
+
+            self.head = pasienBaru
+
+        else:
+
+            if self.head is None:
+
+                self.head = pasienBaru
+
+            else:
+
+                current = self.head
+
+                while current.next is not None:
+
+                    current = current.next
+
+                current.next = pasienBaru
+
+
+
+        print(f"[Antrian {self.nomor}] {nama} terdaftar ({prioritas})")
+
+        self.nomor += 1
+
+
+
+    def panggil_berikutnya(self):
+
+        if self.head is None:
+
+            print("Antrian kosong")
+
+            return
+
+
+
+        pasien = self.head
+
+        print(f"Memanggil: {pasien.nama} ({pasien.prioritas})")
+
+        self.head = self.head.next
+
+
+
+    def lihat_antrian(self):
+
+        if self.head is None:
+
+            print("Antrian kosong")
+
+            return
+
+
+
+        print("\n=== DAFTAR ANTRIAN ===")
+
+
+
+        current = self.head
+
+        nomor = 1
+
+        while current is not None:
+
+            print(f"{nomor}. {current.nama} [{current.prioritas}]")
+
+            current = current.next
+
+            nomor += 1
+
+
+
+    def hitung_antrian(self):
+
+        jumlah = 0
+
+        current = self.head
+
+        while current is not None:
+
+            jumlah += 1
+
+            current = current.next
+
+        return jumlah
+
+
+
+klinik = AntrianKlinik()
+
+klinik.daftar("Budi", "normal")
+
+klinik.daftar("Siti", "normal")
+
+klinik.daftar("Ahmad", "darurat")
+
+klinik.lihat_antrian()
+
+klinik.panggil_berikutnya()
+
+klinik.panggil_berikutnya()
+
+print("Sisa antrian:", klinik.hitung_antrian())</code></pre>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
+

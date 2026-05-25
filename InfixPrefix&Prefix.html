@@ -1,0 +1,417 @@
+﻿﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>Infix Prefix dan Postfix</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    >
+
+</head>
+
+<body>
+    
+    <header>
+        <nav class="navbar">
+
+            <div class="logo">
+                <i class="fa-solid fa-code"></i>
+                AlgoWeb
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="stack.html">Stack</a></li>
+                <li><a href="Queue.html">Queue</a></li>
+                <li><a href="InfixPrefix&Prefix.html">Infix, Prefix, & Posfix</a></li>
+                <li><a href="Sorting.html">sorting</a></li>
+                <li><a href="Rekursi.html">rekrusif</a></li>
+                <li><a href="Searching.html">Search</a></li>
+                <li><a href="Hashing.html">Hashing</a></li>
+                <li><a href="LinkedList.html">Linked List</a></li>
+                <li><a href="Tree.html">Tree</a></li>
+            </ul>
+
+        </nav>
+    </header>
+    <main>
+        <div id="gthd8v-1" class="materi-box">
+            <h2>Infix, Prefix, dan Postfix</h2>
+            <p>Dalam stack, terdapat tiga bentuk penulisan ekspresi matematika: <strong>Infix</strong>, <strong>Prefix</strong>, dan <strong>Postfix</strong> untuk mempermudah proses komputasi.</p>
+        </div>
+
+        <div id="gthd8v-2" class="materi-box">
+            <h3>1. Infix</h3>
+            <p>Infix adalah bentuk ekspresi di mana operator berada di antara operand (misal: A + B * C). Umum dipakai dalam matematika sehari-hari.</p>
+            <p>Contoh dengan kurung untuk mengatur urutan: (A + B) * C.</p>
+            <p>Karena infix memakai prioritas operator, komputer sering mengubahnya ke prefix atau postfix agar mudah diproses.</p>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>def prioritas(operator):
+
+    if operator == '+' or operator == '-':
+
+        return 1
+
+    elif operator == '*' or operator == '/':
+
+        return 2
+
+    return 0
+
+
+
+def infixKePostfix(ekspresi):
+
+    stack = []
+
+    hasil = ""
+
+    for char in ekspresi:
+
+        # jika huruf atau angka
+
+        if char.isalnum():
+
+            hasil += char
+
+        # jika kurung buka
+
+        elif char == '(':
+
+            stack.append(char)
+
+        # jika kurung tutup
+
+        elif char == ')':
+
+            while stack and stack[-1] != '(':
+
+                hasil += stack.pop()
+
+            stack.pop()
+
+        # jika operator
+
+        else:
+
+            while stack and prioritas(char) <= prioritas(stack[-1]):
+
+                hasil += stack.pop()
+
+            stack.append(char)
+
+    # ambil sisa operator
+
+    while stack:
+
+        hasil += stack.pop()
+
+    return hasil
+
+
+
+infix = "A+B*C"
+
+postfix = infixKePostfix(infix)
+
+print("Infix  :", infix)
+
+print("Postfix:", postfix)</code></pre>
+        </div>
+
+        <div id="gthd8v-3" class="materi-box">
+            <h3>2. Prefix</h3>
+            <p>Prefix adalah bentuk ekspresi dengan operator ditulis sebelum operand. Contoh: Infix: A + B → Prefix: + A B.</p>
+            <p>Prefix tidak membutuhkan tanda kurung karena urutan operasi sudah jelas.</p>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>class Stack:
+
+    def __init__(self):
+
+        self.data = []
+
+
+
+    def push(self, item):
+
+        self.data.append(item)
+
+
+
+    def pop(self):
+
+        return self.data.pop()
+
+
+
+    def peek(self):
+
+        return self.data[-1]
+
+
+
+    def kosong(self):
+
+        return len(self.data) == 0
+
+
+
+def prioritas(operator):
+
+    if operator == '+' or operator == '-':
+
+        return 1
+
+    elif operator == '*' or operator == '/':
+
+        return 2
+
+    return 0
+
+
+
+def infixKePostfix(ekspresi):
+
+    stack = Stack()
+
+    hasil = ""
+
+    for char in ekspresi:
+
+        # jika huruf/angka
+
+        if char.isalnum():
+
+            hasil += char
+
+        # jika kurung buka
+
+        elif char == '(':
+
+            stack.push(char)
+
+        # jika kurung tutup
+
+        elif char == ')':
+
+            while not stack.kosong() and stack.peek() != '(':
+
+                hasil += stack.pop()
+
+            stack.pop()
+
+        # jika operator
+
+        else:
+
+            while (not stack.kosong() and
+
+                prioritas(char) <= prioritas(stack.peek())):
+
+                hasil += stack.pop()
+
+            stack.push(char)
+
+    # ambil sisa operator
+
+    while not stack.kosong():
+
+        hasil += stack.pop()
+
+    return hasil
+
+
+
+# Program utama
+
+infix = "A+B*C"
+
+postfix = infixKePostfix(infix)
+
+print("Infix  :", infix)
+
+print("Postfix:", postfix)</code></pre>
+        </div>
+
+        <div id="gthd8v-4" class="materi-box">
+            <h3>Konversi Infix → Prefix (fungsi infix_to_prefix)</h3>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code># Fungsi prioritas operator
+
+def prec(c):
+
+    if c == '+' or c == '-':
+
+        return 1
+
+    elif c == '*' or c == '/':
+
+        return 2
+
+    else:
+
+        return 0
+
+
+
+# Fungsi infix ke prefix
+
+def infix_to_prefix(infix):
+
+    # 1. reverse
+
+    infix = infix[::-1]
+
+    # 2. tukar kurung
+
+    infix = infix.replace('(', 'temp')
+
+    infix = infix.replace(')', '(')
+
+    infix = infix.replace('temp', ')')
+
+    stack = []
+
+    output = ""
+
+    for char in infix:
+
+        if char.isalnum():
+
+            output += char
+
+        elif char == '(':
+
+            stack.append(char)
+
+        elif char == ')':
+
+            while stack and stack[-1] != '(':
+
+                output += stack.pop()
+
+            stack.pop()
+
+        else:
+
+            while stack and prec(stack[-1]) >= prec(char):
+
+                output += stack.pop()
+
+            stack.append(char)
+
+    while stack:
+
+        output += stack.pop()
+
+    # 4. reverse lagi
+
+    return output[::-1]
+
+
+
+# Contoh
+
+infix = "A+B*C"
+
+print("Prefix:", infix_to_prefix(infix))</code></pre>
+        </div>
+
+        <div id="gthd8v-5" class="materi-box">
+            <h3>3. Postfix</h3>
+            <p>Postfix adalah bentuk ekspresi di mana operator ditulis setelah operand. Contoh: Infix: A + B * C → Postfix: A B C * +.</p>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>infix = "A+B*C"
+
+stack = []
+
+output = ""
+
+for char in infix:
+
+    # jika huruf / angka → langsung ke output
+
+    if char.isalnum():
+
+        output += char
+
+    # jika operator
+
+    else:
+
+        # kalau stack kosong atau prioritas lebih tinggi → push
+
+        if not stack or char == '*' or char == '/':
+
+            stack.append(char)
+
+        else:
+
+            # kalau prioritas lebih rendah → pop dulu
+
+            while stack:
+
+                output += stack.pop()
+
+            stack.append(char)
+
+# keluarkan sisa stack
+
+while stack:
+
+    output += stack.pop()
+
+print("Postfix:", output)</code></pre>
+        </div>
+
+        <div id="gthd8v-6" class="materi-box">
+            <h3>Hubungan dengan Stack</h3>
+            <ul>
+                <li>Konversi infix ke postfix</li>
+                <li>Konversi infix ke prefix</li>
+                <li>Evaluasi postfix</li>
+                <li>Evaluasi prefix</li>
+            </ul>
+            <p>Karena stack memiliki prinsip LIFO, cocok untuk menyimpan operator sementara.</p>
+        </div>
+
+        <div id="gthd8v-7" class="materi-box">
+            <h3>Algoritma Konversi Infix → Postfix</h3>
+            <ol>
+                <li>Buat stack kosong untuk operator.</li>
+                <li>Baca ekspresi infix dari kiri ke kanan.</li>
+                <li>Operand → langsung ke output.</li>
+                <li>Operator → pop jika prioritas lebih tinggi/sama, lalu push.</li>
+                <li>“(” → push.</li>
+                <li>“)” → pop sampai “(”.</li>
+                <li>Setelah selesai, pop semua operator tersisa ke output.</li>
+            </ol>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
+

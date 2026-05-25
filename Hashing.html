@@ -1,0 +1,674 @@
+﻿﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>Hashing</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    >
+
+</head>
+
+<body>
+    
+    <header>
+        <nav class="navbar">
+
+            <div class="logo">
+                <i class="fa-solid fa-code"></i>
+                AlgoWeb
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="stack.html">Stack</a></li>
+                <li><a href="Queue.html">Queue</a></li>
+                <li><a href="InfixPrefix&Prefix.html">Infix, Prefix, & Posfix</a></li>
+                <li><a href="Sorting.html">sorting</a></li>
+                <li><a href="Rekursi.html">rekrusif</a></li>
+                <li><a href="Searching.html">Search</a></li>
+                <li><a href="Hashing.html">Hashing</a></li>
+                <li><a href="LinkedList.html">Linked List</a></li>
+                <li><a href="Tree.html">Tree</a></li>
+            </ul>
+
+        </nav>
+    </header>
+    <main>
+        <div id="gthd8v-1" class="materi-box">
+            <h2>Hashing</h2>
+            <p>Hashing adalah teknik untuk menyimpan dan mengambil data secara efisien menggunakan fungsi hash agar akses cepat.</p>
+            <ul>
+                <li>Pemetaan data ke indeks tabel hash (array) memakai fungsi hash.</li>
+                <li>Rata-rata operasi pencarian/penyisipan/penghapusan bisa mendekati <strong>O(1)</strong>.</li>
+                <li>Dipakai untuk kumpulan item (key) dan kamus (key-value).</li>
+            </ul>
+        </div>
+
+        <div id="gthd8v-2" class="materi-box">
+            <h3>Contoh Modulo</h3>
+            <p>Fungsi hash: <strong>H(x) = x % 10</strong> mengubah bilangan besar menjadi nilai 0 sampai 9.</p>
+        </div>
+
+        <div id="gthd8v-3" class="materi-box">
+            <h3>Ciri-ciri Hashing</h3>
+            <ol>
+                <li>Output panjang tetap</li>
+                <li>Sulit dibalik (resistant terhadap reverse)</li>
+                <li>Perubahan kecil bisa menghasilkan output sangat berbeda (misal “halo” vs “Halo”)</li>
+                <li>Deterministik: input sama → output sama</li>
+            </ol>
+        </div>
+
+        <div id="gthd8v-4" class="materi-box">
+            <h3>Contoh Penggunaan</h3>
+            <ul>
+                <li>Keamanan password (disimpan dalam bentuk hash)</li>
+                <li>Penyimpanan data/database (mempercepat pencarian)</li>
+                <li>Cek integritas file (agar file tidak berubah)</li>
+            </ul>
+            <p>Algoritma hashing terkenal: MD5 (tidak aman), SHA-1 (mulai ditinggalkan), SHA-256 (lebih aman).</p>
+        </div>
+
+        <div id="gthd8v-5" class="materi-box">
+            <h3>Analogi</h3>
+            <p>Hashing seperti memasukkan dokumen ke mesin penghancur → keluar potongan unik. Kamu bisa mengenali hasilnya, tapi tidak bisa menyusun ulang dokumen aslinya.</p>
+        </div>
+
+        <div id="gthd8v-6" class="materi-box">
+            <h2>Collision</h2>
+            <p>Collision terjadi ketika dua data berbeda menghasilkan hash yang sama.</p>
+        </div>
+
+        <div id="gthd8v-7" class="materi-box">
+            <h3>Collision pada Hash Table</h3>
+            <p>Di hash table, collision sering terjadi saat dua data masuk ke indeks array yang sama.</p>
+            <p>Contoh: ukuran tabel = 10 → 21 % 10 = 1 dan 31 % 10 = 1 (keduanya mau ke index 1).</p>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>class Hash:
+
+    def __init__(self):
+
+        self.panjang = 11
+
+        self.table = self.hashTable()
+
+
+
+    def hashFunction(self, data):
+
+        return data % self.panjang
+
+
+
+    def hashTable(self):
+
+        return [[None] for i in range(self.panjang)]
+
+
+
+    def chaining(self, data):
+
+        for i in range(len(data)):
+
+            idx = self.hashFunction(data[i])
+
+            if self.table[idx] == [None]:
+
+                self.table[idx] = [data[i]]
+
+            else:
+
+                self.table[idx].append(data[i])
+
+
+
+    def searchHash(self, target):
+
+        idx = self.hashFunction(target)
+
+        if self.table[idx] != [None]:
+
+            for i in range(len(self.table[idx])):
+
+                if self.table[idx][i] == target:
+
+                    return ("data berada di slot ke-", idx,
+
+                            "dan indeks ke-", i)
+
+
+
+        return False
+
+
+
+varHash = Hash()
+
+data = [54, 26, 93, 17, 77, 31, 44, 55, 20]
+
+varHash.chaining(data)
+
+print(varHash.table)
+
+print(varHash.searchHash(54))
+
+print(varHash.searchHash(20))
+
+print(varHash.searchHash(55))
+
+print(varHash.searchHash(100))</code></pre>
+        </div>
+
+        <div id="gthd8v-8" class="materi-box">
+            <h2>Chaining</h2>
+            <p>Chaining menangani collision dengan menyimpan data yang hash-nya sama dalam satu “rantai” (list/linked list) pada index tersebut.</p>
+            <p>Kelebihan: mudah dibuat, bisa menyimpan banyak collision, tidak perlu cari slot kosong lain.</p>
+            <p>Kekurangan: jika collision terlalu banyak, pencarian jadi lebih lambat.</p>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>class Chaining:
+
+    def __init__(self):
+
+        self.panjang = 11
+
+        self.table = [[None] for i in range(self.panjang)]
+
+
+
+    def hashFunction(self, data):
+
+        return data % self.panjang
+
+
+
+    def chaining(self, data):
+
+        for i in range(len(data)):
+
+            idx = self.hashFunction(data[i])
+
+            if self.table[idx] == [None]:
+
+                self.table[idx] = [data[i]]
+
+            else:
+
+                self.table[idx].append(data[i])
+
+
+
+chain = Chaining()
+
+data = [54, 26, 93, 17, 77, 31, 44, 55, 20]
+
+chain.chaining(data)
+
+print("Chaining:")
+
+print(chain.table)</code></pre>
+        </div>
+
+        <div id="gthd8v-9" class="materi-box">
+            <h2>Open Addressing</h2>
+            <p>Open addressing menangani collision dengan mencari slot kosong lain di dalam tabel.</p>
+            <p>Jenis yang ada: Linear Probing, Quadratic Probing, Double Hashing.</p>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>class HashTable:
+
+    def __init__(self, ukuran):
+
+        self.ukuran = ukuran
+
+        self.tabel = [None] * ukuran
+
+
+
+    def fungsiHash(self, angka):
+
+        return angka % self.ukuran
+
+
+
+    def insert(self, angka):
+
+        index = self.fungsiHash(angka)
+
+        # cek collision
+
+        while self.tabel[index] is not None:
+
+            print(f"Collision di index {index} untuk angka {angka}")
+
+            # pindah ke slot berikutnya
+
+            index = (index + 1) % self.ukuran
+
+        self.tabel[index] = angka
+
+        print(f"{angka} masuk ke index {index}")
+
+
+
+    def tampil(self):
+
+        print("\nIsi Hash Table:")
+
+        for i in range(self.ukuran):
+
+            print(i, ":", self.tabel[i])
+
+
+
+# Membuat objek hash table
+
+hashTable = HashTable(10)
+
+# Insert data
+
+hashTable.insert(15)
+
+hashTable.insert(25)
+
+hashTable.insert(35)
+
+# Tampilkan isi tabel
+
+hashTable.tampil()</code></pre>
+        </div>
+
+        <div id="gthd8v-10" class="materi-box">
+            <h2>Close Address (Closed Addressing)</h2>
+            <p>Closed Addressing pada dasarnya adalah chaining: data collision tetap berada di index yang sama.</p>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>class HashTable:
+
+    def __init__(self, ukuran):
+
+        self.ukuran = ukuran
+
+        # setiap index berisi list kosong
+
+        self.tabel = [[] for _ in range(ukuran)]
+
+
+
+    def fungsiHash(self, angka):
+
+        return angka % self.ukuran
+
+
+
+    def insert(self, angka):
+
+        index = self.fungsiHash(angka)
+
+        # closed addressing / chaining
+
+        self.tabel[index].append(angka)
+
+        print(f"{angka} masuk ke index {index}")
+
+
+
+    def tampil(self):
+
+        print("\nIsi Hash Table:")
+
+        for i in range(self.ukuran):
+
+            print(i, ":", self.tabel[i])
+
+
+
+# Membuat objek hash table
+
+hashTable = HashTable(10)
+
+# Insert data
+
+hashTable.insert(15)
+
+hashTable.insert(25)
+
+hashTable.insert(35)
+
+# Tampilkan isi tabel
+
+hashTable.tampil()</code></pre>
+        </div>
+
+        <div id="gthd8v-11" class="materi-box">
+            <h2>Mid Square Method</h2>
+            <p>Mid Square Method menentukan index dengan mengkuadratkan angka lalu mengambil digit tengah.</p>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>class HashTable:
+
+    def __init__(self, ukuran):
+
+        self.ukuran = ukuran
+
+        self.tabel = [None] * ukuran
+
+
+
+    def midSquareHash(self, angka):
+
+        kuadrat = angka ** 2
+
+        kuadratStr = str(kuadrat)
+
+        # ambil 2 digit tengah
+
+        tengah = len(kuadratStr) // 2
+
+        digitTengah = kuadratStr[tengah-1:tengah+1]
+
+        # jadikan index
+
+        index = int(digitTengah) % self.ukuran
+
+        return index
+
+
+
+    def insert(self, angka):
+
+        index = self.midSquareHash(angka)
+
+        self.tabel[index] = angka
+
+        print(f"{angka} masuk ke index {index}")
+
+
+
+    def tampil(self):
+
+        print("\nIsi Hash Table:")
+
+        for i, data in enumerate(self.tabel):
+
+            print(i, ":", data)
+
+
+
+hashTable = HashTable(10)
+
+hashTable.insert(44)
+
+hashTable.insert(25)
+
+hashTable.insert(12)
+
+hashTable.tampil()</code></pre>
+        </div>
+
+        <div id="gthd8v-12" class="materi-box">
+            <h2>Sola Latihan</h2>
+            <p>Buat fungsi-fungsi hashing, termasuk hash function, pembuatan hash table, chaining, searchHash, serta pendeteksi anagram &amp; duplikat.</p>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>class HashFunction:
+
+    def __init__(self, panjang):
+
+        self.panjang = panjang
+
+
+
+    def hashFunction(self, data):
+
+        return data % self.panjang
+
+
+
+hf = HashFunction(panjang=10) # Menggunakan panjang modulo 10
+
+print("Hash Function (Modulo 10):")
+
+print("54 % 10 =", hf.hashFunction(54))
+
+print("20 % 10 =", hf.hashFunction(20))
+
+print("55 % 10 =", hf.hashFunction(55))</code></pre>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>class CreateHashTable:
+
+    def __init__(self, size):
+
+        self.size = size
+
+
+
+    def hashTable(self):
+
+        return [[None] for i in range(self.size)]
+
+
+
+cht = CreateHashTable(size=10) # Menggunakan ukuran tabel hash 10
+
+print("Hash Table (Ukuran 10):")
+
+print(cht.hashTable())</code></pre>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>class Chaining:
+
+    def __init__(self):
+
+        self.panjang = 11
+
+        self.table = [[None] for i in range(self.panjang)]
+
+
+
+    def hashFunction(self, data):
+
+        return data % self.panjang
+
+
+
+    def chaining(self, data):
+
+        for i in range(len(data)):
+
+            idx = self.hashFunction(data[i])
+
+            if self.table[idx] == [None]:
+
+                self.table[idx] = [data[i]]
+
+            else:
+
+                self.table[idx].append(data[i])
+
+
+
+chain = Chaining()
+
+data = [54, 26, 93, 17, 77, 31, 44, 55, 20]
+
+chain.chaining(data)
+
+print("Chaining:")
+
+print(chain.table)</code></pre>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>class Hash:
+
+    def __init__(self):
+
+        self.panjang = 11
+
+        self.table = self.hashTable()
+
+
+
+    def hashFunction(self, data):
+
+        return data % self.panjang
+
+
+
+    def hashTable(self):
+
+        return [[None] for i in range(self.panjang)]
+
+
+
+    def chaining(self, data):
+
+        for i in range(len(data)):
+
+            idx = self.hashFunction(data[i])
+
+            if self.table[idx] == [None]:
+
+                self.table[idx] = [data[i]]
+
+            else:
+
+                self.table[idx].append(data[i])
+
+
+
+    def searchHash(self, target):
+
+        idx = self.hashFunction(target)
+
+        if self.table[idx] != [None]:
+
+            for i in range(len(self.table[idx])):
+
+                if self.table[idx][i] == target:
+
+                    return ("data berada di slot ke-", idx,
+
+                            "dan indeks ke-", i)
+
+
+
+        return False
+
+
+
+varHash = Hash()
+
+data = [54, 26, 93, 17, 77, 31, 44, 55, 20]
+
+varHash.chaining(data)
+
+print(varHash.table)
+
+print(varHash.searchHash(54))
+
+print(varHash.searchHash(20))
+
+print(varHash.searchHash(55))
+
+print(varHash.searchHash(100))</code></pre>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>class Anagram:
+
+    def cekAnagram(self, kata1, kata2):
+
+        if len(kata1) != len(kata2):
+
+            return False
+
+        hashHuruf = {}
+
+        for huruf in kata1:
+
+            if huruf in hashHuruf:
+
+                hashHuruf[huruf] += 1
+
+            else:
+
+                hashHuruf[huruf] = 1
+
+        for huruf in kata2:
+
+            if huruf not in hashHuruf:
+
+                return False
+
+            hashHuruf[huruf] -= 1
+
+        return True
+
+
+
+cek = Anagram()
+
+print("\nDeteksi Anagram:")
+
+print(cek.cekAnagram("listen", "silent"))
+
+print(cek.cekAnagram("hello", "world"))</code></pre>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>class Duplikat:
+
+    def cekDuplikat(self, data):
+
+        if len(data) != len(set(data)):
+
+            return True
+
+        return False
+
+
+
+dup = Duplikat()
+
+print("\nDeteksi Duplikat:")
+
+print(dup.cekDuplikat([1, 2, 3, 4, 5]))
+
+print(dup.cekDuplikat([1, 2, 3, 2, 5]))
+
+print(dup.cekDuplikat(["a", "b", "a"]))</code></pre>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
+
