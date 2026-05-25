@@ -1,0 +1,320 @@
+﻿﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>Rekursif</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    >
+
+</head>
+
+<body>
+    
+    <header>
+        <nav class="navbar">
+
+            <div class="logo">
+                <i class="fa-solid fa-code"></i>
+                AlgoWeb
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="stack.html">Stack</a></li>
+                <li><a href="Queue.html">Queue</a></li>
+                <li><a href="InfixPrefix&Prefix.html">Infix, Prefix, & Posfix</a></li>
+                <li><a href="Sorting.html">sorting</a></li>
+                <li><a href="Rekursi.html">rekrusif</a></li>
+                <li><a href="Searching.html">Search</a></li>
+                <li><a href="Hashing.html">Hashing</a></li>
+                <li><a href="LinkedList.html">Linked List</a></li>
+                <li><a href="Tree.html">Tree</a></li>
+            </ul>
+
+        </nav>
+    </header>
+    <main>
+        <div id="gthd8v-1" class="materi-box">
+            <h2>Rekursi</h2>
+            <p><strong>Rekursi</strong> terjadi ketika sebuah fungsi memanggil dirinya sendiri.</p>
+            <p>Rekursi adalah konsep umum dalam matematika dan pemrograman karena memungkinkan kita melakukan perulangan/iterasi melalui data hingga mencapai suatu hasil.</p>
+            <p><strong>Catatan:</strong> rekursi harus ditulis hati-hati agar tidak berujung fungsi tak berakhir (<em>infinite recursion</em>) atau menyebabkan <em>stack overflow</em>.</p>
+        </div>
+
+        <div id="gthd8v-2" class="materi-box">
+            <h3>Base Case &amp; Step Rekursif</h3>
+            <ul>
+                <li><strong>Base Case:</strong> kondisi yang menghentikan rekursi.</li>
+                <li><strong>Step Rekursif:</strong> memanggil fungsi dirinya sendiri dengan argumen yang dimodifikasi.</li>
+            </ul>
+            <p><strong>NB:</strong> pastikan base case selalu pada akhirnya terpenuhi.</p>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>def hanoi(n, asal, bantu, tujuan):
+
+    # Base Case
+
+    if n == 1:
+
+        print(f"Pindah disk 1 dari {asal} ke {tujuan}")
+
+    # Step Rekursif
+
+    else:
+
+        hanoi(n-1, asal, tujuan, bantu)
+
+        print(f"Pindah disk {n} dari {asal} ke {tujuan}")
+
+        hanoi(n-1, bantu, asal, tujuan)
+
+
+
+hanoi(3, 'A', 'B', 'C')</code></pre>
+        </div>
+
+        <div id="gthd8v-3" class="materi-box">
+            <h3>Contoh Rekursi: Faktorial &amp; Fibonacci (sesuai notebook)</h3>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>def fak(n):
+
+    # Base Case
+
+    if n == 1:
+
+        return 1
+
+    elif n%2== 0:
+
+        return fak(n-1)
+
+    # Step Rekursif
+
+    else:
+
+        return n*fak(n-1)
+
+
+
+print(fak(8)) # 7*5*3*1
+
+
+
+def factorial(n):
+
+    # Base case
+
+    if n == 0 or n == 1:
+
+        return 1
+
+    # Step Rekursif
+
+    else:
+
+        return n * factorial(n - 1)
+
+
+
+print(factorial(5))</code></pre>
+        </div>
+
+        <div id="gthd8v-4" class="materi-box">
+            <h3>Rekursi dengan Daftar</h3>
+            <p>Rekursi bisa memproses daftar dengan menangani satu elemen pada satu waktu.</p>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code># Hitung jumlah semua elemen dalam sebuah daftar:
+
+def sum_list(numbers):
+
+    if len(numbers) == 0:
+
+        return 0
+
+    else:
+
+        return numbers[0] + sum_list(numbers[1:])
+
+
+
+my_list = [1, 2, 3, 4, 5]
+
+print(sum_list(my_list))
+
+
+
+# Temukan nilai maksimum dalam sebuah daftar:
+
+def find_max(numbers):
+
+    if len(numbers) == 1:
+
+        return numbers[0]
+
+    else:
+
+        max_of_rest = find_max(numbers[1:])
+
+    return numbers[0] if numbers[0] > max_of_rest else max_of_rest
+
+
+
+my_list = [3, 7, 2, 9, 1]
+
+print(find_max(my_list))</code></pre>
+        </div>
+
+        <div id="gthd8v-5" class="materi-box">
+            <h3>Batasan Rekursi</h3>
+            <p>Python memiliki batasan kedalaman rekursi default (sekitar 1000 panggilan rekursif), bisa berbeda tergantung environment.</p>
+            <p>Jika perlu lebih dalam, bisa menaikkan batasnya, tetapi hati-hati karena bisa menyebabkan RAM penuh, crash, atau kernel mati karena rekursi menyimpan pemanggilan fungsi di memori.</p>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>import sys
+
+print(sys.getrecursionlimit())
+
+
+
+import sys
+
+sys.setrecursionlimit(2000)
+
+print(sys.getrecursionlimit())</code></pre>
+        </div>
+
+        <div id="gthd8v-6" class="materi-box">
+            <h2>Soal Latihan</h2>
+            <ol>
+                <li>Buat semua fungsi yang telah dibuat pada tugas pra-praktikum menggunakan rekursi.</li>
+            </ol>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code># eksponen
+
+def eksponen(x, n):
+
+    if n == 0:
+
+        return 1
+
+    else:
+
+        return x * eksponen(x, n - 1)
+
+
+
+print(eksponen(2, 3))
+
+
+
+# Faktorial
+
+def faktorial(n):
+
+    if n == 1 or n == 0:
+
+        return 1
+
+    else:
+
+        return n * faktorial(n - 1)
+
+
+
+print(faktorial(5))
+
+
+
+# fibonacci
+
+def fibonacci(n):
+
+    if n == 0:
+
+        return 0
+
+    elif n == 1:
+
+        return 1
+
+    else:
+
+        return fibonacci(n-1) + fibonacci(n-2)
+
+
+
+print(fibonacci(6))
+
+
+
+# deret aritmatika
+
+def deret_aritmatika(a, b, n):
+
+    if n == 1:
+
+        return a
+
+    else:
+
+        return deret_aritmatika(a, b, n-1) + b
+
+
+
+print(deret_aritmatika(1, 4, 3))</code></pre>
+        </div>
+
+        <div id="gthd8v-7" class="materi-box">
+            <ol start="2">
+                <li>Jelaskan Tower of Hanoi dan buat fungsi rekursif untuk menyelesaikannya.</li>
+            </ol>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>def hanoi(n, asal, bantu, tujuan):
+
+    if n == 1:
+
+        print(f"Pindah disk 1 dari {asal} ke {tujuan}")
+
+    else:
+
+        hanoi(n-1, asal, tujuan, bantu)
+
+        print(f"Pindah disk {n} dari {asal} ke {tujuan}")
+
+        hanoi(n-1, bantu, asal, tujuan)
+
+
+
+hanoi(3, 'A', 'B', 'C')</code></pre>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
+
