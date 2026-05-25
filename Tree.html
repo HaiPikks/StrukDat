@@ -1,0 +1,348 @@
+﻿﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>Tree</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    >
+
+</head>
+
+<body>
+    
+    <header>
+        <nav class="navbar">
+
+            <div class="logo">
+                <i class="fa-solid fa-code"></i>
+                AlgoWeb
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="stack.html">Stack</a></li>
+                <li><a href="Queue.html">Queue</a></li>
+                <li><a href="InfixPrefix&Prefix.html">Infix, Prefix, & Posfix</a></li>
+                <li><a href="Sorting.html">sorting</a></li>
+                <li><a href="Rekursi.html">rekrusif</a></li>
+                <li><a href="Searching.html">Search</a></li>
+                <li><a href="Hashing.html">Hashing</a></li>
+                <li><a href="LinkedList.html">Linked List</a></li>
+                <li><a href="Tree.html">Tree</a></li>
+            </ul>
+
+        </nav>
+    </header>
+    <main>
+        <div id="gthd8v-1" class="materi-box">
+            <h2>Tree</h2>
+            <p>Struktur data Tree mirip dengan Linked List karena setiap node berisi data dan dapat dihubungkan ke node lain.</p>
+            <p>Tree disebut <strong>pohon</strong> karena bentuknya bercabang seperti pohon.</p>
+        </div>
+
+        <div id="gthd8v-2" class="materi-box">
+            <h3>Kenapa Tree Berguna?</h3>
+            <ul>
+                <li>Data hierarkis: sistem file, model organisasi</li>
+                <li>Basis data: pengambilan data lebih cepat</li>
+                <li>Tabel perutean: meroute data dalam algoritma jaringan</li>
+                <li>Pengurutan &amp; pencarian: mencari/mengurutkan data</li>
+                <li>Antrian prioritas: sering memakai heap (bentuk pohon)</li>
+            </ul>
+        </div>
+
+        <div id="gthd8v-3" class="materi-box">
+            <h3>Jenis-jenis Pohon</h3>
+            <ul>
+                <li><strong>Binary Trees:</strong> tiap simpul maksimal punya 2 anak (kiri dan kanan).</li>
+                <li><strong>Binary Search Trees (BST):</strong> kiri < root < kanan.</li>
+                <li><strong>AVL Trees:</strong> BST yang diseimbangkan; selisih tinggi kiri-kanan maksimal 1.</li>
+            </ul>
+        </div>
+
+        <div id="gthd8v-4" class="materi-box">
+            <h3>Tree vs Array &amp; Linked List</h3>
+            <ul>
+                <li><strong>Array:</strong> cepat akses elemen, tapi insert/hapus perlu pergeseran memori.</li>
+                <li><strong>Linked List:</strong> cepat insert/hapus, tapi akses elemen perlu penelusuran.</li>
+                <li><strong>Tree:</strong> cepat akses node dan cepat insert/hapus tanpa pergeseran besar.</li>
+            </ul>
+        </div>
+
+        <div id="gthd8v-5" class="materi-box">
+            <h2>Binary Trees</h2>
+            <p>Binary Tree adalah tree dengan <strong>maksimal dua anak</strong> untuk setiap simpul: anak kiri dan anak kanan.</p>
+            <p>Pembatasan ini membuat operasi seperti pencarian, insert, dan delete lebih mudah dan efisien.</p>
+        </div>
+
+        <div id="gthd8v-6" class="materi-box">
+            <h3>Implementasi Binary Tree</h3>
+            <p>Contoh implementasi: node saling terhubung ke left dan right.</p>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>class TreeNode:
+
+    def __init__(self, data):
+
+        self.data = data
+
+        self.left = None
+
+        self.right = None
+
+
+
+root = TreeNode('R')
+
+nodeA = TreeNode('A')
+
+nodeB = TreeNode('B')
+
+nodeC = TreeNode('C')
+
+nodeD = TreeNode('D')
+
+nodeE = TreeNode('E')
+
+nodeF = TreeNode('F')
+
+nodeG = TreeNode('G')
+
+
+
+root.left = nodeA
+
+root.right = nodeB
+
+
+
+nodeA.left = nodeC
+
+nodeA.right = nodeD
+
+
+
+nodeB.left = nodeE
+
+nodeB.right = nodeF
+
+
+
+nodeF.left = nodeG
+
+
+
+# Test
+
+print("root.right.left.data:", root.right.left.data)</code></pre>
+        </div>
+
+        <div id="gthd8v-7" class="materi-box">
+            <h3>Varian Binary Tree</h3>
+            <ul>
+                <li><strong>Seimbang (balanced):</strong> selisih tinggi kiri-kanan maks 1.</li>
+                <li><strong>Lengkap (complete):</strong> level terisi penuh dari kiri ke kanan.</li>
+                <li><strong>Penuh (full):</strong> tiap simpul punya 0 atau 2 anak.</li>
+                <li><strong>Sempurna (perfect):</strong> semua daun pada level sama; internal punya 2 anak.</li>
+            </ul>
+        </div>
+
+        <div id="gthd8v-8" class="materi-box">
+            <h3>Binary Search Tree (BST)</h3>
+            <p>BST adalah binary tree dengan aturan khusus:</p>
+            <ul>
+                <li>Semua nilai di subtree kiri < root</li>
+                <li>Semua nilai di subtree kanan > root</li>
+            </ul>
+        </div>
+
+        <div id="gthd8v-9" class="materi-box">
+            <h3>Contoh</h3>
+            <p>Root 50, kiri 30 (20,40), kanan 70 (60,80).</p>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>        50
+       /  \
+     30    70
+    / \    / \
+   20 40  60 80</code></pre>
+        </div>
+
+        <div id="gthd8v-10" class="materi-box">
+            <h3>Sifat BST</h3>
+            <p>Untuk setiap node: <strong>kiri < root < kanan</strong>.</p>
+        </div>
+
+        <div id="gthd8v-11" class="materi-box">
+            <h3>Operasi Dasar BST</h3>
+            <ol>
+                <li><strong>Search (Pencarian):</strong> sama → ketemu, lebih kecil → kiri, lebih besar → kanan.</li>
+                <li><strong>Insertion (Penyisipan):</strong> ikuti aturan BST sampai menemukan posisi kosong.</li>
+                <li><strong>Deletion (Penghapusan):</strong> ada 3 kondisi (0 anak, 1 anak, 2 anak) lalu ganti sesuai strategi inorder successor/predecessor.</li>
+            </ol>
+        </div>
+
+        <div id="gthd8v-12" class="materi-box">
+            <h3>Traversal pada BST (Inorder)</h3>
+            <p>Urutan traversal inorder: <strong>kiri → root → kanan</strong>. Hasilnya selalu urut naik.</p>
+            <p>Contoh: 20 30 40 50 60 70 80.</p>
+        </div>
+
+        <div id="gthd8v-13" class="materi-box">
+            <h3>Kelebihan BST</h3>
+            <ul>
+                <li>Pencarian cepat</li>
+                <li>Insert cepat</li>
+                <li>Data otomatis terurut</li>
+            </ul>
+        </div>
+
+        <div id="gthd8v-14" class="materi-box">
+            <h3>Kekurangan BST</h3>
+            <p>Jika tree tidak seimbang, BST bisa jadi lambat (mirip linked list).</p>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>def __init__(self, data):
+
+        self.data = data
+
+        self.left = None
+
+        self.right = None</code></pre>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>def insert(root, data):
+
+    if root is None:
+
+        return Node(data)
+
+    if data < root.data:
+
+        root.left = insert(root.left, data)
+
+    else:
+
+        root.right = insert(root.right, data)
+
+    return root
+
+
+
+root = None
+
+root = insert(root, 50)
+
+root = insert(root, 30)
+
+root = insert(root, 70)
+
+root = insert(root, 20)
+
+root = insert(root, 40)
+
+print(root.left.data)</code></pre>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>def inorder(root):
+
+    if root:
+
+        inorder(root.left)
+
+        print(root.data, end=" ")
+
+        inorder(root.right)</code></pre>
+        </div>
+
+        <div id="gthd8v-15" class="materi-box">
+            <h2>Soal Latihan</h2>
+            <p>Buat BST menggunakan Python untuk:</p>
+            <ol>
+                <li>Menambahkan data: 50, 30, 70, 20, 40, 60, 80</li>
+                <li>Menampilkan inorder traversal</li>
+                <li>Jelaskan kenapa hasilnya terurut</li>
+            </ol>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>class Node:
+
+    def __init__(self, data):
+
+        self.data = data
+
+        self.left = None
+
+        self.right = None
+
+
+
+def insert(root, data):
+
+    if root is None:
+
+        return Node(data)
+
+    if data < root.data:
+
+        root.left = insert(root.left, data)
+
+    else:
+
+        root.right = insert(root.right, data)
+
+    return root
+
+
+
+def inorder(root):
+
+    if root:
+
+        inorder(root.left)
+
+        print(root.data, end=" ")
+
+        inorder(root.right)
+
+
+
+root = None
+
+data = [50, 30, 70, 20, 40, 60, 80]
+
+for i in data:
+
+    root = insert(root, i)
+
+print("Hasil inorder traversal:")
+
+inorder(root)</code></pre>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
+

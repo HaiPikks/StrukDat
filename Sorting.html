@@ -1,0 +1,835 @@
+﻿﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+    <title>Sorting</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    >
+
+</head>
+
+<body>
+    
+    <header>
+        <nav class="navbar">
+
+            <div class="logo">
+                <i class="fa-solid fa-code"></i>
+                AlgoWeb
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="stack.html">Stack</a></li>
+                <li><a href="Queue.html">Queue</a></li>
+                <li><a href="InfixPrefix&Prefix.html">Infix, Prefix, & Posfix</a></li>
+                <li><a href="Sorting.html">sorting</a></li>
+                <li><a href="Rekursi.html">rekrusif</a></li>
+                <li><a href="Searching.html">Search</a></li>
+                <li><a href="Hashing.html">Hashing</a></li>
+                <li><a href="LinkedList.html">Linked List</a></li>
+                <li><a href="Tree.html">Tree</a></li>
+            </ul>
+
+        </nav>
+    </header>
+    <main>
+        <div id="gthd8v-1" class="materi-box">
+            <h2>Shorting</h2>
+            <p>Sorting adalah proses mengurutkan data berdasarkan aturan tertentu.</p>
+            <p><strong>Contoh aturan pengurutan:</strong></p>
+            <ul>
+                <li>Ascending (kecil → besar): 1, 2, 3, 4</li>
+                <li>Descending (besar → kecil): 4, 3, 2, 1</li>
+            </ul>
+        </div>
+
+        <div id="gthd8v-2" class="materi-box">
+            <h3>Contoh Pengurutan (Ascending &amp; Descending)</h3>
+            <p>Notebook menampilkan contoh dengan dua arah pengurutan menggunakan Bubble/Sorting logic.</p>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>Ist= [5,0,1,10,7,2,5,4,6,9]
+
+print(Ist)
+
+for k in range(1,len(Ist)):
+
+    print(k)
+
+    for i in range(0, len(Ist)-k):
+
+        if Ist[i] > Ist[i+1]:
+
+            Ist[i], Ist[i+1] = Ist[i+1], Ist[i]
+
+        print(Ist)
+
+print('hasil akhir:', Ist)</code></pre>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>Ist= [5,0,1,10,7,2,5,4,6,9]
+
+print(Ist)
+
+for k in range(1,len(Ist)):
+
+    print(k)
+
+    for i in range(0, len(Ist)-k):
+
+        if Ist[i] < Ist[i+1]:
+
+            Ist[i], Ist[i+1] = Ist[i+1], Ist[i]
+
+        print(Ist)
+
+print('hasil akhir:', Ist)</code></pre>
+        </div>
+
+        <div id="gthd8v-3" class="materi-box">
+            <h2>Bubble Sort</h2>
+            <p>Bubble Sort adalah algoritma yang mengurutkan array dari nilai terendah ke nilai tertinggi (ascending) dengan membandingkan dua elemen bersebelahan, lalu menukar jika urutannya salah.</p>
+            <p><strong>Cara kerjanya:</strong></p>
+            <ol>
+                <li>Telusuri array satu per satu.</li>
+                <li>Bandingkan setiap elemen dengan elemen berikutnya.</li>
+                <li>Jika elemen saat ini lebih “salah urut” dibanding berikutnya, tukar.</li>
+                <li>Ulangi sampai seluruh array terurut.</li>
+            </ol>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>data = [5, 3, 8, 1]
+
+for i in range(len(data)):
+
+    for j in range(len(data)-1):
+
+        if data[j] > data[j+1]:
+
+            data[j], data[j+1] = data[j+1], data[j]
+
+print(data)</code></pre>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>Ist= [5,0,1,10,7,2,5,4,6,9]
+
+print(Ist)
+
+for k in range(1,len(Ist)):
+
+    print(k)
+
+    for i in range(0, len(Ist)-k):
+
+        if Ist[i] > Ist[i+1]:
+
+            Ist[i], Ist[i+1] = Ist[i+1], Ist[i]
+
+            swap = 1
+
+            swapped = True
+
+        print(Ist)
+
+    if not swapped:
+
+        break
+
+print(f"\n iterasi ke- {k}")
+
+print(f"\nResult = {Ist}")
+
+print(f"Swap: {swap}")</code></pre>
+        </div>
+
+        <div id="gthd8v-4" class="materi-box">
+            <h2>Selection Sort</h2>
+            <p>Selection Sort menemukan nilai terendah (atau terkecil) dalam sebuah array, lalu memindahkannya ke bagian depan array yang belum diurutkan.</p>
+            <p><strong>Cara kerjanya:</strong></p>
+            <ol>
+                <li>Telusuri array untuk menemukan nilai terendah.</li>
+                <li>Pindahkan nilai terendah ke posisi depan dari bagian yang belum terurut.</li>
+                <li>Ulangi sampai seluruh array terurut.</li>
+            </ol>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>data = [5, 3, 8, 1]
+
+for i in range(len(data)):
+
+    min_index = i
+
+    for j in range(i+1, len(data)):
+
+        if data[j] < data[min_index]:
+
+            min_index = j
+
+    data[i], data[min_index] = data[min_index], data[i]
+
+print(data)</code></pre>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>Ist= [5,0,1,10,7,2,5,4,6,9]
+
+print(Ist)
+
+swap = 0
+
+for i in range(0,len(Ist)-1):
+
+    min=i
+
+    print(i)
+
+    for j in range(i+1, len(Ist)):
+
+        if Ist[j] < Ist[min]:
+
+            min = j
+
+    Ist[i], Ist[min] = Ist[min], Ist[i]
+
+    swap=swap+1
+
+    print(Ist)
+
+print('hasil akhir:', Ist)
+
+print(f"Total swaps: {swap}")</code></pre>
+        </div>
+
+        <div id="gthd8v-5" class="materi-box">
+            <h2>Insertion Sort</h2>
+            <p>Insertion Sort mengurutkan array dengan cara menyimpan bagian yang sudah terurut di satu sisi, lalu memasukkan elemen berikutnya ke posisi yang benar (mirip menyusun kartu).</p>
+            <p><strong>Cara kerjanya:</strong></p>
+            <ol>
+                <li>Ambil elemen berikutnya dari bagian yang belum terurut.</li>
+                <li>Geser elemen terurut untuk memberi tempat.</li>
+                <li>Tempatkan elemen pada posisi yang tepat.</li>
+            </ol>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>data = [5, 3, 8, 1]
+
+for i in range(1, len(data)):
+
+    key = data[i]
+
+    j = i - 1
+
+    while j >= 0 and key < data[j]:
+
+        data[j + 1] = data[j]
+
+        j -= 1
+
+    data[j + 1] = key
+
+print(data)</code></pre>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>lst = [4,7,1,0]
+
+for i in range(1,len(lst)):
+
+    nilaiawal = lst[ i]
+
+    hole = i
+
+while lst[hole-1] > nilaiawal and hole > 0 :
+
+    lst[hole] = lst[hole-1]
+
+    hole=hole-1
+
+    lst[hole] = nilaiawal
+
+print(lst)</code></pre>
+        </div>
+
+        <div id="gthd8v-6" class="materi-box">
+            <h2>Quick Sort</h2>
+            <p>Quicksort adalah salah satu algoritma pengurutan tercepat. Quicksort memilih elemen sebagai <strong>pivot</strong>, lalu memisahkan data menjadi bagian kiri (lebih kecil dari pivot) dan kanan (lebih besar dari pivot). Proses dilakukan rekursif.</p>
+            <p><strong>Rekursi</strong> terjadi ketika sebuah fungsi memanggil dirinya sendiri.</p>
+            <p><strong>Cara kerjanya:</strong></p>
+            <ol>
+                <li>Pilih nilai sebagai pivot.</li>
+                <li>Pisahkan elemen selain pivot: kiri (lebih kecil), kanan (lebih besar).</li>
+                <li>Tukar/penempatan pivot agar berada di antara dua bagian.</li>
+                <li>Lakukan rekursif pada sub-array kiri dan kanan.</li>
+            </ol>
+        </div>
+
+        <div id="gthd8v-7" class="materi-box">
+            <h3>Pengertian Pivot</h3>
+            <p>Pivot adalah nilai pembanding pada Quick Sort untuk membagi data menjadi:</p>
+            <ul>
+                <li>lebih kecil dari pivot</li>
+                <li>lebih besar dari pivot</li>
+            </ul>
+            <p><strong>Contoh:</strong> Data [5,0,1,10,7,2], pivot = 5 → [0,1,2] 5 [10,7]</p>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>def quick_sort(lst):
+
+    if len(lst) <= 1:
+
+        return lst
+
+
+
+    pivot = lst[0]
+
+
+
+    kiri = [x for x in lst[1:] if x < pivot]
+
+
+
+    kanan = [x for x in lst[1:] if x >= pivot]
+
+
+
+    return quick_sort(kiri) + [pivot] + quick_sort(kanan)
+
+
+
+lst = [5,0,1,10,7,2,5,4,6,9]
+
+print(quick_sort(lst))</code></pre>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>def quick_sort(lst):
+
+    if len(lst) <= 1:
+
+        return lst
+
+
+
+    pivot = lst[0]
+
+
+
+    kiri = []
+
+    kanan = []
+
+
+
+    for x in lst[1:]:
+
+
+
+        if x < pivot:
+
+            kiri.append(x)
+
+        else:
+
+            kanan.append(x)
+
+
+
+    print("Pivot :", pivot)
+
+    print("Kiri  :", kiri)
+
+    print("Kanan :", kanan)
+
+
+
+    return quick_sort(kiri) + [pivot] + quick_sort(kanan)
+
+
+
+lst = [5,0,1,10,7,2]
+
+hasil = quick_sort(lst)
+
+print("Hasil:", hasil)</code></pre>
+        </div>
+
+        <div id="gthd8v-8" class="materi-box">
+            <h2>Merge Sort</h2>
+            <p>Merge Sort adalah algoritma <strong>bagi-dan-taklukkan</strong> (divide &amp; conquer): memecah array menjadi bagian kecil, lalu menggabungkannya kembali secara terurut.</p>
+            <p><strong>Bagi:</strong> memecah sampai sub-array tinggal 1 elemen.</p>
+            <p><strong>Conquer:</strong> menggabungkan dua bagian kecil menjadi urut.</p>
+            <p><strong>Cara kerjanya:</strong></p>
+            <ol>
+                <li>Bagilah array menjadi dua sub-array.</li>
+                <li>Lanjutkan pembagian sampai masing-masing sub-array berukuran kecil.</li>
+                <li>Gabungkan dua sub-array dengan menempatkan nilai lebih kecil lebih dulu.</li>
+                <li>Ulangi sampai semua bagian tergabung.</li>
+            </ol>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>def merge_sort(lst):
+
+    if len(lst) <= 1:
+
+        return lst
+
+
+
+    mid = len(lst)//2
+
+
+
+    kiri = merge_sort(lst[:mid])
+
+    kanan = merge_sort(lst[mid:])
+
+
+
+    hasil = []
+
+    while kiri and kanan:
+
+        if kiri[0] < kanan[0]:
+
+            hasil.append(kiri.pop(0))
+
+        else:
+
+            hasil.append(kanan.pop(0))
+
+
+
+    return hasil + kiri + kanan
+
+
+
+lst = [5,0,1,10,7,2,5,4,6,9]
+
+print(merge_sort(lst))</code></pre>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>def MergedSort(A):
+
+    n = len(A)
+
+    if (n<2):
+
+        return
+
+
+
+    mid = len(A)//2
+
+    left = A[:mid]
+
+    right = A[mid:]
+
+    MergedSort(left)
+
+    MergedSort(right)
+
+
+
+    i=0
+
+    j=0
+
+    k=0
+
+    while i < len(left) and j < len(right):
+
+        if left[i] < right[j]:
+
+            A[k]=left[i]
+
+            i=i+1
+
+        else:
+
+            A[k]=right[j]
+
+            j=j+1
+
+        k=k+1
+
+
+
+    while i < len(left):
+
+        A[k]=left[i]
+
+        i=i+1
+
+        k=k+1
+
+
+
+    while j < len(right):
+
+        A[k]=right[j]
+
+        j=j+1
+
+        k=k+1
+
+
+
+Alist= [54,26,93,17,99,77,31,44,55,20,100]
+
+MergedSort(Alist)
+
+print(Alist)</code></pre>
+        </div>
+
+        <div id="gthd8v-9" class="materi-box">
+            <h2>Search</h2>
+            <p>“search” dalam pemrograman itu artinya: mencari data.</p>
+            <p><strong>Contoh:</strong></p>
+            <ul>
+                <li>mencari angka 7 dalam list</li>
+                <li>mencari nama dalam data</li>
+                <li>mencari posisi/index data</li>
+            </ul>
+        </div>
+
+        <div id="gthd8v-10" class="materi-box">
+            <h3>Linear Search</h3>
+            <p>Linear search (sequential search) adalah algoritma pencarian paling sederhana: memeriksa setiap elemen satu per satu.</p>
+            <p><strong>Cara kerjanya:</strong></p>
+            <ol>
+                <li>Telusuri array dari awal.</li>
+                <li>Bandingkan nilai elemen dengan nilai target.</li>
+                <li>Jika ditemukan, kembalikan indeks.</li>
+                <li>Jika tidak ditemukan sampai akhir, kembalikan -1.</li>
+            </ol>
+            <p><strong>Catatan:</strong> jika array sudah terurut, biasanya lebih cepat memakai Binary Search.</p>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>lst = [5,0,1,10,7,2]
+
+cari = 7
+
+for i in range(len(lst)):
+
+    if lst[i] == cari:
+
+        print("Data ditemukan di index", i)</code></pre>
+        </div>
+
+        <div id="gthd8v-11" class="materi-box">
+            <h3>Menerapkan Linier Search di Python</h3>
+            <p>Untuk sekadar cek nilai ada atau tidak, bisa pakai operator <code>in</code>:</p>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>mylist = [3, 7, 2, 9, 5, 1, 8, 4, 6]
+
+if 4 in mylist:
+
+    print("Found!")
+
+else:
+
+    print("Not found!")</code></pre>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>def linearSearch(arr, targetVal):
+
+    for i in range(len(arr)):
+
+        if arr[i] == targetVal:
+
+            return i
+
+    return -1
+
+
+
+mylist = [3, 7, 2, 9, 5, 1, 8, 4, 6]
+
+x = 4
+
+result = linearSearch(mylist, x)
+
+if result != -1:
+
+    print("Found at index", result)
+
+else:
+
+    print("Not found")</code></pre>
+        </div>
+
+        <div id="gthd8v-12" class="materi-box">
+            <h3>Binary Search</h3>
+            <p>Binary search mencari di array yang <strong>sudah diurutkan</strong> dan mengembalikan indeks target.</p>
+            <p>Binary search memeriksa nilai di tengah, lalu mempersempit area pencarian menjadi setengah dari sebelumnya.</p>
+            <p><strong>Cara kerjanya:</strong></p>
+            <ol>
+                <li>Periksa nilai tengah.</li>
+                <li>Jika target lebih rendah → cari di kiri, jika lebih tinggi → cari di kanan.</li>
+                <li>Ulangi sampai ditemukan atau area kosong.</li>
+                <li>Jika tidak ditemukan → kembalikan -1.</li>
+            </ol>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>lst = [1,2,3,4,5,6,7,8,9]
+
+cari = 7
+
+awal = 0
+
+akhir = len(lst)-1
+
+while awal <= akhir:
+
+    tengah = (awal + akhir)//2
+
+    if lst[tengah] == cari:
+
+        print("Data ditemukan")
+
+        break
+
+    elif cari < lst[tengah]:
+
+        akhir = tengah - 1
+
+    else:
+
+        awal = tengah + 1</code></pre>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>def binarySearch(arr, targetVal):
+
+    left = 0
+
+    right = len(arr) - 1
+
+    while left <= right:
+
+        mid = (left + right) // 2
+
+        if arr[mid] == targetVal:
+
+            return mid
+
+        if arr[mid] < targetVal:
+
+            left = mid + 1
+
+        else:
+
+            right = mid - 1
+
+    return -1
+
+
+
+mylist = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+
+x = 11
+
+result = binarySearch(mylist, x)
+
+if result != -1:
+
+    print("Found at index", result)
+
+else:
+
+    print("Not found")</code></pre>
+        </div>
+
+        <div id="gthd8v-13" class="materi-box">
+            <h2>Soal Latihan</h2>
+            <ol>
+                <li>
+                    <strong>Modifikasi Bubble Sort</strong> dengan ketentuan ganjil descending, genap ascending, dan posisi relatif ganjil/genap tetap.
+                </li>
+            </ol>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>def bubblesort(p):
+
+    n = len(p)
+
+    for i in range(n):
+
+        for j in range(n):
+
+            k = j + 1
+
+            while k < n and (p[k] % 2) != (p[j] % 2):
+
+                k += 1
+
+            if k < n:
+
+                if p[j] % 2 == 0:
+
+                    if p[j] > p[k]:
+
+                        p[j], p[k] = p[k], p[j]
+
+                else:
+
+                    if p[j] < p[k]:
+
+                        p[j], p[k] = p[k], p[j]
+
+    return p
+
+
+
+
+data = [4, 9, 3, 8, 7, 2, 10, 5, 6, 1]
+
+output = bubblesort(data)
+
+print("input: ", [4, 9, 3, 8, 7, 2, 5, 6])
+
+print("output: ",(output))</code></pre>
+        </div>
+
+        <div id="gthd8v-14" class="materi-box">
+            <ol start="2">
+                <li>
+                    <strong>Modifikasi Selection Sort</strong>: genap ascending, ganjil descending, posisi relatif tetap, pertukaran hanya antar elemen sejenis.
+                </li>
+                <li>
+                    <strong>Modifikasi Insertion Sort</strong> agar menjadi zigzag (a[0] > a[1] < a[2] > ...).
+                </li>
+            </ol>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>def selection_sort_modif(p):
+
+    n = len(p)
+
+    print("input :", *p)
+
+    for i in range(n-1):
+
+        idx = i
+
+        tukar = False
+
+        for j in range(i+1, n):
+
+            if p[j] % 2 == p[i] % 2:
+
+                if p[i] % 2 == 0:
+
+                    if p[j] < p[idx]:
+
+                        idx = j
+
+                else:
+
+                    if p[j] > p[idx]:
+
+                        idx = j
+
+        if idx != i:
+
+            p[i], p[idx] = p[idx], p[i]
+
+            tukar = True
+
+        print(f"Iterasi ke-{i+1}:", *p)
+
+        if not tukar:
+
+            print("Tidak ada pertukaran")
+
+    print("Array akhir :", *p)
+
+
+
+data = [8, 3, 6, 9, 2, 7, 4, 5]
+
+selection_sort_modif(data)</code></pre>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>def insertionzigzag(p):
+
+    n = len(p)
+
+    for i in range(1, n):
+
+        j = i
+
+        while j > 0:
+
+            if (j-1) % 2 == 0:
+
+                if p[j-1] < p[j]:
+
+                    p[j-1], p[j] = p[j], p[j-1]
+
+                else:
+
+                    break
+
+            else:
+
+                if p[j-1] > p[j]:
+
+                    p[j-1], p[j] = p[j], p[j-1]
+
+                else:
+
+                    break
+
+            j -= 1
+
+    return p
+
+
+
+data = [4, 7, 2, 9, 1, 5, 10, 11]
+
+zigzag = insertionzigzag(data)
+
+print("output :", (zigzag))</code></pre>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
+

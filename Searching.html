@@ -1,0 +1,497 @@
+﻿﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Searching</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    >
+
+</head>
+
+<body>
+    
+    <header>
+        <nav class="navbar">
+
+            <div class="logo">
+                <i class="fa-solid fa-code"></i>
+                AlgoWeb
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="stack.html">Stack</a></li>
+                <li><a href="Queue.html">Queue</a></li>
+                <li><a href="InfixPrefix&Prefix.html">Infix, Prefix, & Posfix</a></li>
+                <li><a href="Sorting.html">sorting</a></li>
+                <li><a href="Rekursi.html">rekrusif</a></li>
+                <li><a href="Searching.html">Search</a></li>
+                <li><a href="Hashing.html">Hashing</a></li>
+                <li><a href="LinkedList.html">Linked List</a></li>
+                <li><a href="Tree.html">Tree</a></li>
+            </ul>
+
+        </nav>
+    </header>
+    <main>
+        <div id="gthd8v-1" class="materi-box">
+            <h2>Search</h2>
+            <p><strong>Search</strong> dalam pemrograman artinya: mencari data.</p>
+            <p><strong>Contoh:</strong></p>
+            <ul>
+                <li>mencari angka 7 dalam list</li>
+                <li>mencari nama dalam data</li>
+                <li>mencari posisi/index data</li>
+            </ul>
+        </div>
+
+        <div id="gthd8v-2" class="materi-box">
+            <h3>Linear Search</h3>
+            <p>Linear search (sequential search) adalah algoritma pencarian paling sederhana: memeriksa setiap elemen satu per satu.</p>
+            <p><strong>Cara kerjanya:</strong></p>
+            <ol>
+                <li>Telusuri array dari awal.</li>
+                <li>Bandingkan nilai setiap elemen dengan nilai yang dicari.</li>
+                <li>Jika ditemukan, kembalikan indeks.</li>
+                <li>Jika sampai akhir tidak ditemukan, kembalikan <strong>-1</strong>.</li>
+            </ol>
+            <p><strong>NB:</strong> jika array sudah diurutkan, biasanya Binary Search lebih cepat.</p>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>lst = [5,0,1,10,7,2]
+
+cari = 7
+
+for i in range(len(lst)):
+
+    if lst[i] == cari:
+
+        print("Data ditemukan di index", i)</code></pre>
+        </div>
+
+        <div id="gthd8v-3" class="materi-box">
+            <h3>Menerapkan Linier Search di Python</h3>
+            <p>Untuk mengecek nilai ada/tidak, bisa gunakan operator <code>in</code>.</p>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code># Periksa apakah suatu nilai ada dalam sebuah daftar:
+
+mylist = [3, 7, 2, 9, 5, 1, 8, 4, 6]
+
+if 4 in mylist:
+
+    print("Found!")
+
+else:
+
+    print("Not found!")</code></pre>
+        </div>
+
+        <div id="gthd8v-4" class="materi-box">
+            <p>Jika perlu menemukan <strong>indeks</strong>, gunakan linear search.</p>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code># Temukan indeks suatu nilai dalam sebuah daftar:
+
+def linearSearch(arr, targetVal):
+
+    for i in range(len(arr)):
+
+        if arr[i] == targetVal:
+
+            return i
+
+    return -1
+
+
+
+mylist = [3, 7, 2, 9, 5, 1, 8, 4, 6]
+
+x = 4
+
+result = linearSearch(mylist, x)
+
+if result != -1:
+
+    print("Found at index", result)
+
+else:
+
+    print("Not found")</code></pre>
+        </div>
+
+        <div id="gthd8v-5" class="materi-box">
+            <h3>Untuk mengimplementasikan Linear Search</h3>
+            <ol>
+                <li>Sebuah array berisi nilai yang akan dicari.</li>
+                <li>Nilai target.</li>
+                <li>Perulangan menelusuri array dari awal sampai akhir.</li>
+                <li>Pernyataan <code>if</code> untuk membandingkan elemen saat ini dengan target.</li>
+                <li>Jika tidak ditemukan, kembalikan <strong>-1</strong>.</li>
+            </ol>
+        </div>
+
+        <div id="gthd8v-6" class="materi-box">
+            <h3>Binary Search</h3>
+            <p>Binary search mencari pada <strong>array yang sudah diurutkan</strong>, lalu mengembalikan indeks nilai target.</p>
+            <p>Binary search jauh lebih cepat dari linear search, karena mempersempit area pencarian menjadi setengah setiap langkah.</p>
+            <p><strong>Cara kerjanya:</strong></p>
+            <ol>
+                <li>Periksa nilai di tengah array.</li>
+                <li>Jika target lebih rendah, cari di kiri; jika lebih tinggi, cari di kanan.</li>
+                <li>Ulangi sampai ditemukan atau area kosong.</li>
+                <li>Jika tidak ditemukan, kembalikan <strong>-1</strong>.</li>
+            </ol>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>lst = [1,2,3,4,5,6,7,8,9]
+
+cari = 7
+
+awal = 0
+
+akhir = len(lst)-1
+
+while awal <= akhir:
+
+    tengah = (awal + akhir)//2
+
+    if lst[tengah] == cari:
+
+        print("Data ditemukan")
+
+        break
+
+    elif cari < lst[tengah]:
+
+        akhir = tengah - 1
+
+    else:
+
+        awal = tengah + 1</code></pre>
+        </div>
+
+        <div id="gthd8v-7" class="materi-box">
+            <h3>Mengimplementasikan Binary Search</h3>
+            <p>Binary search membutuhkan langkah: iterasi dengan batas kiri/kanan, mengecek nilai tengah, lalu mempersempit area.</p>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>def binarySearch(arr, targetVal):
+
+    left = 0
+
+    right = len(arr) - 1
+
+
+
+    while left <= right:
+
+        mid = (left + right) // 2
+
+
+
+        if arr[mid] == targetVal:
+
+            return mid
+
+
+
+        if arr[mid] < targetVal:
+
+            left = mid + 1
+
+
+
+        else:
+
+            right = mid - 1
+
+
+
+    return -1
+
+
+
+mylist = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+
+x = 11
+
+result = binarySearch(mylist, x)
+
+if result != -1:
+
+    print("Found at index", result)
+
+else:
+
+    print("Not found")</code></pre>
+        </div>
+
+        <div id="gthd8v-8" class="materi-box">
+            <h2>Soal Latihan</h2>
+        </div>
+
+        <div id="gthd8v-9" class="materi-box">
+            <h3>1) Tentukan apakah data terurut → gunakan algoritma yang tepat</h3>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code># DATA
+
+data = [12, 5, 9, 8, 1, 10, 26]
+
+key = 10
+
+terurut = data == sorted(data)
+
+
+def sequential_search(data, key):
+
+    iterasi = 0
+
+    for i in range(len(data)):
+
+        iterasi += 1
+
+
+
+        if data[i] == key:
+
+            return i, iterasi
+
+
+
+    return -1, iterasi
+
+
+
+def binary_search(data, key):
+
+    awal = 0
+
+    akhir = len(data) - 1
+
+    iterasi = 0
+
+    while awal <= akhir:
+
+        iterasi += 1
+
+
+
+        tengah = (awal + akhir) // 2
+
+
+
+        if data[tengah] == key:
+
+            return tengah, iterasi
+
+
+
+        elif data[tengah] < key:
+
+            awal = tengah + 1
+
+
+
+        else:
+
+            akhir = tengah - 1
+
+
+
+    return -1, iterasi
+
+
+
+if terurut:
+
+    print("Status Data : Terurut")
+
+    print("Algoritma : Binary Search")
+
+
+
+    index, iterasi = binary_search(data, key)
+
+
+
+else:
+
+    print("Status Data : Tidak Terurut")
+
+    print("Algoritma : Sequential Search")
+
+
+
+    index, iterasi = sequential_search(data, key)
+
+
+
+if index != -1:
+
+    print("Data ditemukan pada index ke-", index)
+
+else:
+
+    print("Data tidak ditemukan")
+
+
+
+print("Jumlah iterasi :", iterasi)</code></pre>
+        </div>
+
+        <div id="gthd8v-10" class="materi-box">
+            <h3>2) Jika tidak ditemukan, tampilkan nilai terdekat</h3>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code>data = [10, 20, 30, 40, 50]
+
+key = 35
+
+if key in data:
+
+    print("Data ditemukan")
+
+else:
+
+    print("Data tidak ditemukan")
+
+
+
+    selisih_terkecil = abs(data[0] - key)
+
+    terdekat = [data[0]]
+
+
+
+    for i in data:
+
+        selisih = abs(i - key)
+
+        if selisih < selisih_terkecil:
+
+            selisih_terkecil = selisih
+
+            terdekat = [i]
+
+        elif selisih == selisih_terkecil:
+
+            terdekat.append(i)
+
+
+
+    if len(terdekat) == 1:
+
+        print("Nilai terdekat :", terdekat[0])
+
+    else:
+
+        print("Nilai terdekat :", " dan ".join(map(str, terdekat)))</code></pre>
+        </div>
+
+        <div id="gthd8v-11" class="materi-box">
+            <h3>3) Cari semua nilai dalam rentang lower..upper (Linear vs Binary)</h3>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code># Linear Search
+
+data = [5, 1, 8, 12, 3, 20, 15]
+
+lower = 8
+
+upper = 15
+
+
+
+hasil = []
+
+iterasi = 0
+
+for i in data:
+
+    iterasi += 1
+
+
+
+    if lower <= i <= upper:
+
+        hasil.append(i)
+
+
+
+print("HASIL LINEAR SEARCH")
+
+print("Data dalam range :", hasil)
+
+print("Jumlah iterasi :", iterasi)</code></pre>
+        </div>
+
+        <div id="8g8bgo" class="code-box">
+            <pre><code># Binary search
+
+data = [5, 1, 8, 12, 3, 20, 15]
+
+lower = 8
+
+upper = 15
+
+
+
+data.sort()
+
+hasil = []
+
+iterasi = 0
+
+for i in data:
+
+    iterasi += 1
+
+
+
+    if lower <= i <= upper:
+
+        hasil.append(i)
+
+
+
+print("HASIL BINARY SEARCH")
+
+print("Data terurut :", data)
+
+print("Data dalam range :", hasil)
+
+print("Jumlah iterasi :", iterasi)</code></pre>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
+
